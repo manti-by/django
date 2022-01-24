@@ -1,8 +1,6 @@
 import logging
 
-from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.utils.http import urlencode
 
 from posts.models import Post
 
