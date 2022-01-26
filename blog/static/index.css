@@ -1,3 +1,7 @@
 body {
     background-color: darkgrey;
 }
+
+.posts .post-item {
+    margin-bottom: 15px;
+}

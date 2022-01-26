@@ -17,11 +17,13 @@ def post_list(request):
 
 
 def post_add(request):
-    if request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            Post.objects.create(author=request.user, **form.cleaned_data)
-            return redirect("home")
-    else:
-        form = PostForm()
-    return render(request, "posts/add.html", {"form": form})
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = PostForm(request.POST, request.FILES)
+            if form.is_valid():
+                Post.objects.create(author=request.user, **form.cleaned_data)
+                return redirect("home")
+        else:
+            form = PostForm()
+        return render(request, "posts/add.html", {"form": form})
+    return HttpResponse("You don't authenticated!")
