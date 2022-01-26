@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>Your posts</h1>
+  {% if not posts %}
+    <b>You haven't added any posts yet.</b><br>
+  {% endif %}
+  Use <a href="{% url "post_add" %}">this form</a> to add a new post.<br><br>
+
+  <div class="container">
+    <div class="row">
+      {% for post in posts %}
+        <div class="col-4">
+          <div class="card">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.text }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
