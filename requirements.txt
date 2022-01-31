@@ -4,3 +4,4 @@ pytest-django==4.5.2
 psycopg2-binary==2.9.3
 Pillow==9.0.0
 crispy-bootstrap5==0.6
+djangorestframework==3.13.1
