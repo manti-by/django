@@ -22,11 +22,11 @@ from posts.views import post_list, post_add
 from profiles.views import profiles_index
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', post_list, name="home"),
-    path('posts/add/', post_add, name="post_add"),
-    path('profiles/', profiles_index, name="profiles_index"),
-    path('register/', register, name="register"),
+    path("admin/", admin.site.urls),
+    path("", post_list, name="home"),
+    path("posts/add/", post_add, name="post_add"),
+    path("profiles/", profiles_index, name="profiles_index"),
+    path("register/", register, name="register"),
     path("api/", include("api.urls", namespace="api")),
 ]
 
