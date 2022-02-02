@@ -27,3 +27,8 @@ def post_add(request):
             form = PostForm()
         return render(request, "posts/add.html", {"form": form})
     return HttpResponse("You don't authenticated!")
+
+
+def post_view(request, slug):
+    post = Post.objects.get(slug=slug)
+    return render(request, "posts/view.html", {"post": post})

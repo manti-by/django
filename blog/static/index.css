@@ -5,3 +5,7 @@ body {
 .posts .post-item {
     margin-bottom: 15px;
 }
+
+.card-body {
+    background-color: red;
+}

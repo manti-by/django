@@ -14,6 +14,9 @@ class Post(models.Model):
         auto_now_add=True, db_index=True
     )
 
+    def __str__(self):
+        return f"Post #{self.id} - {self.title}"
+
 
 class Tags(models.Model):
     title = models.CharField(max_length=100)

@@ -14,11 +14,14 @@
         <div class="col-4 post-item">
           <div class="card">
             {% if post.image %}
-            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+              <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ post.title }}</h5>
-              <p class="card-text">{{ post.text }}</p>
+              <p class="card-text">
+                {{ post.text }}
+                 <a href="{% url "post_view" post.slug %}">Go to post</a>
+              </p>
             </div>
           </div>
         </div>

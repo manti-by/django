@@ -154,7 +154,6 @@ LOGGING = {
             "class": "logging.StreamHandler",
         },
         "file": {
-            "level": "INFO",
             "class": "logging.FileHandler",
             "filename": "/tmp/app.log",
         },
