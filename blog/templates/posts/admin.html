@@ -1,24 +1,24 @@
 {% extends "base.html" %}
-{% load static crispy_forms_filters text_tags %}
+{% load crispy_forms_filters %}
 
 {% block content %}
-  <div class="posts">
-    <h1 class="my-4">Latest blog posts</h1>
+  <h1>Your posts</h1>
+  {% if not posts %}
+    <b>You haven't added any posts yet.</b><br>
+  {% endif %}
+
+  <div class="container posts">
     <div class="row">
       {% for post in posts %}
         <div class="col-4 post-item">
           <div class="card">
             {% if post.image %}
               <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
-            {% else %}
-              <img src="{% static 'no-image.jpg' %}" class="card-img-top" alt="No image">
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ post.title }}</h5>
               <p class="card-text">
-                {{ post.text|cut_text:150 }}
-              </p>
-              <p class="post-link">
+                {{ post.text }}
                  <a href="{% url "post_view" post.slug %}">Go to post</a>
               </p>
             </div>

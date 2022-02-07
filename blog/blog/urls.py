@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from blog.views import register
-from posts.views import post_list, post_add, post_view
+from posts.views import post_list, post_add, post_view, post_admin
 from profiles.views import profiles_index
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", post_list, name="home"),
+    path("post/admin/", post_admin, name="post_admin"),
     path("post/<str:slug>/", post_view, name="post_view"),
     path("posts/add/", post_add, name="post_add"),
     path("profiles/", profiles_index, name="profiles_index"),

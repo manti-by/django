@@ -10,10 +10,15 @@ logger = logging.getLogger(__name__)
 
 
 def post_list(request):
+    posts = Post.objects.order_by("-id")
+    return render(request, "posts/list.html", {"posts": posts})
+
+
+def post_admin(request):
     if request.user.is_anonymous:
         return redirect("admin:index")
     posts = Post.objects.filter(author=request.user).order_by("-id")
-    return render(request, "posts/list.html", {"posts": posts})
+    return render(request, "posts/admin.html", {"posts": posts})
 
 
 def post_add(request):

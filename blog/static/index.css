@@ -1,11 +1,7 @@
 body {
-    background-color: darkgrey;
+    background-color: #cecece;
 }
 
 .posts .post-item {
     margin-bottom: 15px;
-}
-
-.card-body {
-    background-color: red;
 }
