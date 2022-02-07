@@ -17,4 +17,4 @@ class Command(BaseCommand):
         with open(settings.BASE_DIR / "posts.csv", "w") as file:
             writer = csv.writer(file)
             for post in Post.objects.all():
-                writer.writerow([post.id, post.title])
+                writer.writerow([post.author_id, post.title, post.slug, post.text])
