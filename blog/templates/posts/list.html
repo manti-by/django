@@ -8,11 +8,13 @@
       {% for post in posts %}
         <div class="col-4 post-item">
           <div class="card">
-            {% if post.image %}
-              <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
-            {% else %}
-              <img src="{% static 'no-image.jpg' %}" class="card-img-top" alt="No image">
-            {% endif %}
+            <div class="image-container">
+              {% if post.image %}
+                <img src="{{ post.image.url }}" class="card-img-top img-thumbnail" alt="{{ post.title }}">
+              {% else %}
+                <img src="{% static 'no-image.jpg' %}" class="card-img-top img-thumbnail" alt="No image">
+              {% endif %}
+            </div>
             <div class="card-body">
               <h5 class="card-title">{{ post.title }}</h5>
               <p class="card-text">
