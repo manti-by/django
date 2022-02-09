@@ -16,6 +16,7 @@ class Product(models.Model):
     cost = models.IntegerField()
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
+    link = models.URLField(null=True, blank=True)
     status = models.CharField(
         max_length=100, choices=STATUS_CHOICES, default="IN_STOCK"
     )
