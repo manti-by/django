@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
         def crawler_results(signal, sender, item, response, spider):
             item["cost"] = int(item["cost"].split(",")[0])
-            Product.objects.get_or_create(external_id=item["external_id"], defaults=item)
+            Product.objects.update_or_create(external_id=item["external_id"], defaults=item)
 
         dispatcher.connect(crawler_results, signal=signals.item_scraped)
 

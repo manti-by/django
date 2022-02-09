@@ -16,6 +16,8 @@ class OmaSpider(scrapy.Spider):
     def parse(self, response, **kwargs):
         for product in response.css(".catalog-grid .product-item"):
             image_link = product.css('.product-item_img-box img:first-child::attr(data-lazy)').get()
+            if not image_link:
+                image_link = product.css(".product-item_img-box img:first-child::attr(data-src)").get()
             data = {
                 "external_id": int(product.css("::attr(data-ga-product-id)").get()),
                 "title": product.css(".product-title-and-rate-block .wrapper::text").get().strip(),
