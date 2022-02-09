@@ -1,21 +1,30 @@
 {% extends "base.html" %}
+{% load i18n static crispy_forms_filters %}
+
+{% block title %}Products{% endblock %}
 
 {% block content %}
-  <div class="products">
-    <h1 class="my-4">Shop</h1>
+  <main class="products">
+    <h1 class="my-4">Products</h1>
     <div class="row">
-      {% for product in products %}
-        <div class="col-4 post-item">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.title }}</h5>
-              <p class="card-text">
-                Cost: {{ product.cost }}$
-              </p>
-            </div>
-          </div>
+      <div class="col-3">
+          <div class="filters-form mb-4">
+          <h3>{% translate "Filters" %}</h3>
+          <form class="form-inline">
+            {{ filters_form|crispy }}
+            <button type="submit" class="save btn btn-primary mx-2">Search</button>
+          </form>
         </div>
-      {% endfor %}
+      </div>
+      <div class="col-9">
+        <div class="row">
+          {% for product in products %}
+            <div class="col-4">
+              {% include "products/item.html" %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-  </div>
+  </main>
 {% endblock %}

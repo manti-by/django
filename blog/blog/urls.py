@@ -20,7 +20,7 @@ from django.urls import path, include
 from blog.views import register
 from posts.views import post_list, post_add, post_view, post_admin
 from profiles.views import profiles_index
-from shop.views import product_list
+from shop.views import product_list, product_details_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -29,6 +29,9 @@ urlpatterns = [
     path("post/<str:slug>/", post_view, name="post_view"),
     path("posts/add/", post_add, name="post_add"),
     path("products/", product_list, name="product_list"),
+    path(
+        "product/<int:product_id>/", product_details_view, name="product_details_view"
+    ),
     path("profiles/", profiles_index, name="profiles_index"),
     path("register/", register, name="register"),
     path("api/", include("api.urls", namespace="api")),

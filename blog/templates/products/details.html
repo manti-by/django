@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Product page{% endblock %}
+
+{% block content %}
+<main class="product-details">
+  <h1 class="my-4">{{ product.title }}</h1>
+  <div class="row">
+    <div class="col-4">
+      <img src="{{ product.image.url }}" alt="{{ product.title }}" class="w-100">
+    </div>
+    <div class="col-8">
+      <h3 class="mb-2 text-muted">Cost: {{ product.cost }}</h3>
+      <h3 class="mb-2 text-muted">Status: {{ product.get_status_display }}</h3>
+      <p>{{ product.description }}</p>
+      {% if product.purchases.exists %}
+        <div>
+          Users previously purchased this product:
+          <ul>
+            {% for purchase in product.purchases.all %}
+              <li>{{ purchase.count }} item(s) by {{ purchase.user.username }} at {{ purchase.created_at }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</main>
+{% endblock %}

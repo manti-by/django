@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load static crispy_forms_filters %}
+
+{% block title %}Your purchases{% endblock %}
+
+{% block content %}
+  <main class="purchases">
+    <div class="filters-form mb-4">
+      <h3>Filters</h3>
+      <form class="form-inline">
+        {{ filters_form|crispy }}
+        <button type="submit" class="save btn btn-primary">Search</button>
+      </form>
+    </div>
+    <div class="purchases">
+      <h1>Your purchases</h1>
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" class="table">
+        <tr>
+          <th>Product</th>
+          <th>Count</th>
+          <th>Date</th>
+        </tr>
+        {% for purchase in purchases %}
+          <tr>
+            <td>{{ purchase.product }}</td>
+            <td>{{ purchase.count }}</td>
+            <td>{{ purchase.created_at }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </main>
+{% endblock %}
