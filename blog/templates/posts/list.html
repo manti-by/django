@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static crispy_forms_filters text_tags %}
 
+{% block title %}Latest blog posts{% endblock %}
+
 {% block content %}
   <div class="posts">
     <h1 class="my-4">Latest blog posts</h1>
@@ -8,7 +10,7 @@
       {% for post in posts %}
         <div class="col-4 post-item">
           <div class="card">
-            <div class="image-container">
+            <div class="image-container my-3">
               {% if post.image %}
                 <img src="{{ post.image.url }}" class="card-img-top img-thumbnail" alt="{{ post.title }}">
               {% else %}

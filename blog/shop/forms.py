@@ -5,29 +5,26 @@ from shop.models import ORDER_BY_CHOICES
 
 
 class ProductFiltersForm(forms.Form):
-    price__gt = forms.IntegerField(
+    cost__gt = forms.IntegerField(
         min_value=0,
-        label="Price Min",
-        widget=forms.TextInput(attrs={"class": "ml-1 mr-3"}),
-        required=False,
+        label="Cost Min",
+        required=False
     )
-    price__lt = forms.IntegerField(
+    cost__lt = forms.IntegerField(
         min_value=0,
-        label="Price Max",
-        widget=forms.TextInput(attrs={"class": "ml-1 mr-3"}),
-        required=False,
+        label="Cost Max",
+        required=False
     )
     order_by = forms.ChoiceField(
         choices=ORDER_BY_CHOICES,
-        widget=forms.Select(attrs={"class": "ml-1 mr-3"}),
-        required=False,
+        required=False
     )
 
     def clean(self):
         cleaned_data = super().clean()
-        price__gt = cleaned_data.get("price__gt")
-        price__lt = cleaned_data.get("price__lt")
-        if price__gt and price__lt and price__gt > price__lt:
+        cost__gt = cleaned_data.get("cost__gt")
+        cost__lt = cleaned_data.get("cost__lt")
+        if cost__gt and cost__lt and cost__gt > cost__lt:
             raise ValidationError("Min price can't be greater than Max price")
 
 
@@ -37,6 +34,5 @@ class PurchasesFiltersForm(forms.Form):
             ("-created_at", "Newest First"),
             ("created_at", "Oldest First"),
         ),
-        widget=forms.Select(attrs={"class": "ml-1 mr-3"}),
         required=False,
     )
