@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static crispy_forms_filters %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="post-details">
+  <div class="row my-5">
+    <div class="col-4">
+      {% if post.image %}
+        <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+      {% else %}
+        <img src="{% static 'no-image.jpg' %}" class="card-img-top" alt="No image">
+      {% endif %}
+    </div>
+    <div class="col-8">
+      <h1 class="mb-2">{{ post.title }}</h1>
+      <p class="text">{{ post.text }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

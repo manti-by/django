@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% load crispy_forms_filters %}
+{% load crispy_forms_filters text_tags %}
+
+{% block title %}Your posts{% endblock %}
 
 {% block content %}
   <h1>Your posts</h1>
@@ -18,7 +20,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ post.title }}</h5>
               <p class="card-text">
-                {{ post.text }}
+                {{ post.text|cut_text:150 }}
                  <a href="{% url "post_view" post.slug %}">Go to post</a>
               </p>
             </div>

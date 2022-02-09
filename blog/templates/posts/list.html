@@ -12,9 +12,9 @@
           <div class="card">
             <div class="image-container my-3">
               {% if post.image %}
-                <img src="{{ post.image.url }}" class="card-img-top img-thumbnail" alt="{{ post.title }}">
+                <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
               {% else %}
-                <img src="{% static 'no-image.jpg' %}" class="card-img-top img-thumbnail" alt="No image">
+                <img src="{% static 'no-image.jpg' %}" class="card-img-top" alt="No image">
               {% endif %}
             </div>
             <div class="card-body">
