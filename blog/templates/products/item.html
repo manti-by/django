@@ -3,7 +3,7 @@
 <div class="card mb-3">
   <div class="card-body">
     {% if product.image %}
-      <img class="card-img-top mb-2" src="{{ product.image.url }}" alt="{{ product.name }}">
+      <img class="card-img-top mb-2" src="{{ product.image }}" alt="{{ product.name }}">
     {% else %}
       <img src="{% static 'no-image.jpg' %}" class="card-img-top img-thumbnail" alt="No image">
     {% endif %}
