@@ -5,7 +5,7 @@ import scrapy
 
 class OmaSpider(scrapy.Spider):
     name = "oma.by"
-    allowed_domains = ["https://www.oma.by"]
+    allowed_domains = ["www.oma.by"]
     start_urls = ["https://www.oma.by/elektroinstrument-c"]
 
     def __init__(self, *args, **kwargs):
@@ -22,7 +22,11 @@ class OmaSpider(scrapy.Spider):
                 "external_id": int(product.css("::attr(data-ga-product-id)").get()),
                 "title": product.css(".product-title-and-rate-block .wrapper::text").get().strip(),
                 "cost": product.css(".product-price-block .price__normal::text").get().strip(),
-                "link": f"{self.allowed_domains[0]}{product.css('a.area-link::attr(href)').get()}",
-                "image": f"{self.allowed_domains[0]}{image_link}",
+                "link": f"https://{self.allowed_domains[0]}{product.css('a.area-link::attr(href)').get()}",
+                "image": f"https://{self.allowed_domains[0]}{image_link}",
             }
             yield data
+
+        next_page = response.css(".page-nav_box .btn__nav-right::attr(href)").get()
+        if next_page is not None:
+            yield response.follow(next_page, callback=self.parse)

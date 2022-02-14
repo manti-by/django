@@ -1,5 +1,6 @@
 import logging
 
+from django.core.paginator import Paginator
 from django.db.models import Sum, F
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -36,6 +37,10 @@ def product_list(request):
                 products = products.annotate(
                     total_cost=Sum("purchases__count") * F("cost")
                 ).order_by("-total_cost")
+
+    paginator = Paginator(products, 30)
+    page_number = request.GET.get("page")
+    products = paginator.get_page(page_number)
 
     return render(request, "products/list.html", {"filters_form": filters_form, "products": products})
 
