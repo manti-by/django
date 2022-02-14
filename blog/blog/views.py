@@ -22,7 +22,7 @@ def register(request):
             )
             user.set_password(form.cleaned_data["password"])
             user.save()
-            return redirect("/")
+            return redirect("register")
     else:
         form = RegisterForm()
     return render(request, "register.html", {"form": form})
