@@ -6,7 +6,7 @@ import scrapy
 class OmaSpider(scrapy.Spider):
     name = "oma.by"
     allowed_domains = ["https://www.oma.by"]
-    start_urls = ["https://www.oma.by/elektroinstrument-c?PAGEN_1=2"]
+    start_urls = ["https://www.oma.by/elektroinstrument-c"]
 
     def __init__(self, *args, **kwargs):
         logger = logging.getLogger("scrapy")
