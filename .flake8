@@ -1,0 +1,8 @@
+[flake8]
+exclude =
+  .git,
+  .idea,
+  __pycache__,
+  blog/blog/settings.py
+max-line-length = 120
+max-complexity = 14

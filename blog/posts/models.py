@@ -10,9 +10,7 @@ class Post(models.Model):
     image = models.ImageField(blank=True, null=True)
     slug = models.SlugField()
     text = models.TextField()
-    created_at = models.DateTimeField(
-        auto_now_add=True, db_index=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
         return f"Post #{self.id} - {self.title}"

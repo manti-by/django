@@ -5,20 +5,9 @@ from shop.models import ORDER_BY_CHOICES
 
 
 class ProductFiltersForm(forms.Form):
-    cost__gt = forms.IntegerField(
-        min_value=0,
-        label="Cost Min",
-        required=False
-    )
-    cost__lt = forms.IntegerField(
-        min_value=0,
-        label="Cost Max",
-        required=False
-    )
-    order_by = forms.ChoiceField(
-        choices=ORDER_BY_CHOICES,
-        required=False
-    )
+    cost__gt = forms.IntegerField(min_value=0, label="Cost Min", required=False)
+    cost__lt = forms.IntegerField(min_value=0, label="Cost Max", required=False)
+    order_by = forms.ChoiceField(choices=ORDER_BY_CHOICES, required=False)
 
     def clean(self):
         cleaned_data = super().clean()

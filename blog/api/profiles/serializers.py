@@ -4,7 +4,9 @@ from profiles.models import Profile
 
 
 class ProfileModelSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.HyperlinkedRelatedField(view_name="api:users-detail", read_only=True)
+    user = serializers.HyperlinkedRelatedField(
+        view_name="api:users-detail", read_only=True
+    )
 
     class Meta:
         model = Profile

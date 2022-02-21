@@ -8,24 +8,32 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shop', '0001_initial'),
+        ("shop", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='image',
-            field=models.ImageField(blank=True, null=True, upload_to=''),
+            model_name="product",
+            name="image",
+            field=models.ImageField(blank=True, null=True, upload_to=""),
         ),
         migrations.AddField(
-            model_name='product',
-            name='status',
-            field=models.CharField(choices=[('IN_STOCK', 'In Stock'), ('OUT_OF_STOCK', 'Out Of Stock')], default='IN_STOCK', max_length=100),
+            model_name="product",
+            name="status",
+            field=models.CharField(
+                choices=[("IN_STOCK", "In Stock"), ("OUT_OF_STOCK", "Out Of Stock")],
+                default="IN_STOCK",
+                max_length=100,
+            ),
         ),
         migrations.AddField(
-            model_name='purchase',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, db_index=True, default=datetime.datetime(2022, 2, 9, 14, 8, 44, 756015, tzinfo=utc)),
+            model_name="purchase",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                db_index=True,
+                default=datetime.datetime(2022, 2, 9, 14, 8, 44, 756015, tzinfo=utc),
+            ),
             preserve_default=False,
         ),
     ]

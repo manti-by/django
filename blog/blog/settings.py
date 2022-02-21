@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "crispy_forms",
     "crispy_bootstrap5",
+    "django_rq",
     "blog",
     "posts",
     "profiles",
@@ -92,6 +93,17 @@ DATABASES = {
         "HOST": "localhost",
         "PORT": 5432,
     }
+}
+
+# Redis server
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": "localhost",
+        "PORT": 6379,
+        "DB": 0,
+        "DEFAULT_TIMEOUT": 360,
+    },
 }
 
 
