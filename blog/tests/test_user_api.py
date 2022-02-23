@@ -19,3 +19,6 @@ class TestUserApi:
         response = client.post("/api/register/", data=data)
         assert response.status_code == 201
         assert User.objects.exists()
+
+        response = client.post("/api/login/", data=data)
+        assert response.status_code == 200
