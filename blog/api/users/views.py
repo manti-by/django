@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
-from rest_framework.mixins import RetrieveModelMixin, ListModelMixin, CreateModelMixin
+from rest_framework.generics import CreateAPIView
+from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
 
@@ -16,7 +17,7 @@ class UserViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     permission_classes = [IsAuthenticated]
 
 
-class UserCreateView(CreateModelMixin, GenericViewSet):
+class UserCreateView(CreateAPIView):
     """
     API endpoint that allows to create users.
     """

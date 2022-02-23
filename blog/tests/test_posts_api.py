@@ -9,7 +9,7 @@ from posts.models import Post
 
 @pytest.mark.django_db
 class TestPostsApi:
-    def test_profiles_index_view(self):
+    def test_posts_index_view(self):
         client = Client()
 
         user = User.objects.create(
@@ -21,7 +21,7 @@ class TestPostsApi:
 
         response = client.get("/api/posts/")
         assert response.status_code == 200
-        assert response.data[0]["title"] == "Test"
+        assert response.data["results"][0]["title"] == "Test"
 
         response = client.post("/api/posts/", data={"title": "Test", "text": "test"})
         assert response.status_code == 201
