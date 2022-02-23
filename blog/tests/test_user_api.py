@@ -22,3 +22,6 @@ class TestUserApi:
 
         response = client.post("/api/login/", data=data)
         assert response.status_code == 200
+
+        response = client.post("/api/logout/")
+        assert response.status_code == 200

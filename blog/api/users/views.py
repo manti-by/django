@@ -1,7 +1,7 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, RetrieveAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView
 from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -59,3 +59,16 @@ class UserLoginView(GenericAPIView):
             return Response()
 
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserLogoutView(GenericAPIView):
+    """
+    API endpoint that allows to login users.
+    """
+
+    permission_classes = []
+
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            logout(request)
+        return Response()
