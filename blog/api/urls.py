@@ -2,7 +2,7 @@ from django.urls import include, path
 from rest_framework import routers
 from api.posts.views import PostViewSet
 from api.profiles.views import ProfileViewSet
-from api.users.views import UserViewSet
+from api.users.views import UserViewSet, UserCreateView
 
 app_name = "api"
 
@@ -14,5 +14,6 @@ router.register(r"profiles", ProfileViewSet, basename="profiles")
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("register/", UserCreateView.as_view(), name="register"),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]

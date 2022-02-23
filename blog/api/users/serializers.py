@@ -11,3 +11,8 @@ class UserModelSerializer(serializers.HyperlinkedModelSerializer):
             "date_joined",
         )
         read_only_fields = ("id", "date_joined")
+
+
+class UserCreateSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(min_length=8, max_length=256)
