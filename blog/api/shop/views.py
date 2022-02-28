@@ -1,4 +1,4 @@
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -8,7 +8,7 @@ from api.shop.serializers import PurchaseCreateSerializer, ProductModelSerialize
 from shop.models import Product, Purchase
 
 
-class ProductViewSet(ListAPIView):
+class ProductViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows products to be viewed.
     """
