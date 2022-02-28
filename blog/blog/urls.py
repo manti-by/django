@@ -25,11 +25,11 @@ from shop.views import product_list, product_details_view
 urlpatterns = [
     path("admin/django-rq/", include("django_rq.urls")),
     path("admin/", admin.site.urls),
-    path("", post_list, name="home"),
+    path("posts/", post_list, name="posts_list"),
     path("post/admin/", post_admin, name="post_admin"),
     path("post/<str:slug>/", post_view, name="post_view"),
     path("posts/add/", post_add, name="post_add"),
-    path("products/", product_list, name="product_list"),
+    path("", product_list, name="home"),
     path(
         "product/<int:product_id>/", product_details_view, name="product_details_view"
     ),
