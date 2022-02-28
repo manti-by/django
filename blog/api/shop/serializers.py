@@ -11,7 +11,16 @@ class PurchaseCreateSerializer(serializers.Serializer):
 class ProductModelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ["id", "title", "cost", "external_id", "description", "image", "link", "status"]
+        fields = [
+            "id",
+            "title",
+            "cost",
+            "external_id",
+            "description",
+            "image",
+            "link",
+            "status",
+        ]
 
 
 class ProductFiltersSerializer(serializers.Serializer):

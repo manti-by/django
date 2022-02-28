@@ -4,7 +4,11 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from api.shop.serializers import PurchaseCreateSerializer, ProductModelSerializer, ProductFiltersSerializer
+from api.shop.serializers import (
+    PurchaseCreateSerializer,
+    ProductModelSerializer,
+    ProductFiltersSerializer,
+)
 from shop.models import Product, Purchase
 from shop.queries import filter_products
 
@@ -14,7 +18,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     API endpoint that allows products to be viewed.
     """
 
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by("id")
     serializer_class = ProductModelSerializer
     permission_classes = [IsAuthenticated]
 
@@ -25,9 +29,8 @@ class ProductViewSet(viewsets.ModelViewSet):
         cost__gt = serializer.validated_data.get("cost__gt")
         cost__lt = serializer.validated_data.get("cost__lt")
         order_by = serializer.validated_data.get("order_by")
-        filter_products(queryset, cost__gt, cost__lt, order_by)
 
-        return queryset
+        return filter_products(queryset, cost__gt, cost__lt, order_by)
 
 
 class PurchaseCreateView(CreateAPIView):

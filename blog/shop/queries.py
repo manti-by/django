@@ -12,9 +12,9 @@ def filter_products(products, cost__gt, cost__lt, order_by):
         if order_by == "cost_desc":
             products = products.order_by("-cost")
         if order_by == "max_count":
-            products = products.annotate(
-                total_count=Sum("purchases__count")
-            ).order_by("-total_count")
+            products = products.annotate(total_count=Sum("purchases__count")).order_by(
+                "-total_count"
+            )
         if order_by == "max_price":
             products = products.annotate(
                 total_cost=Sum("purchases__count") * F("cost")

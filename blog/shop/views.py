@@ -11,14 +11,15 @@ logger = logging.getLogger(__name__)
 
 
 def product_list(request):
-    products = Product.objects.all()
+    products = Product.objects.all().order_by("id")
     filters_form = ProductFiltersForm(request.GET)
 
     if filters_form.is_valid():
         cost__gt = filters_form.cleaned_data["cost__gt"]
         cost__lt = filters_form.cleaned_data["cost__lt"]
         order_by = filters_form.cleaned_data["order_by"]
-        filter_products(products, cost__gt, cost__lt, order_by)
+
+        products = filter_products(products, cost__gt, cost__lt, order_by)
 
     paginator = Paginator(products, 30)
     page_number = request.GET.get("page")
