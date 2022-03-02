@@ -2,6 +2,7 @@ import logging
 
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import TemplateView
 
 from shop.forms import ProductFiltersForm
 from shop.models import Product, Purchase
@@ -10,26 +11,25 @@ from shop.queries import filter_products
 logger = logging.getLogger(__name__)
 
 
-def product_list(request):
-    products = Product.objects.all().order_by("id")
-    filters_form = ProductFiltersForm(request.GET)
+class ProductListView(TemplateView):
+    template_name = "products/list.html"
 
-    if filters_form.is_valid():
-        cost__gt = filters_form.cleaned_data["cost__gt"]
-        cost__lt = filters_form.cleaned_data["cost__lt"]
-        order_by = filters_form.cleaned_data["order_by"]
+    def get_context_data(self, **kwargs):
+        products = Product.objects.all().order_by("id")
+        filters_form = ProductFiltersForm(self.request.GET)
 
-        products = filter_products(products, cost__gt, cost__lt, order_by)
+        if filters_form.is_valid():
+            cost__gt = filters_form.cleaned_data["cost__gt"]
+            cost__lt = filters_form.cleaned_data["cost__lt"]
+            order_by = filters_form.cleaned_data["order_by"]
 
-    paginator = Paginator(products, 30)
-    page_number = request.GET.get("page")
-    products = paginator.get_page(page_number)
+            products = filter_products(products, cost__gt, cost__lt, order_by)
 
-    return render(
-        request,
-        "products/list.html",
-        {"filters_form": filters_form, "products": products},
-    )
+        paginator = Paginator(products, 30)
+        page_number = self.request.GET.get("page")
+        products = paginator.get_page(page_number)
+
+        return {"products": products, "filters_form": filters_form}
 
 
 def product_details_view(request, product_id):

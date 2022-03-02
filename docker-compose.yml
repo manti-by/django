@@ -24,6 +24,7 @@ services:
       - postgres
       - redis
     environment:
+      - DJANGO_DEBUG=False
       - REDIS_HOST=redis
       - POSTGRES_HOST=postgres
     command: |
@@ -40,6 +41,7 @@ services:
       - postgres
       - redis
     environment:
+      - DJANGO_DEBUG=False
       - REDIS_HOST=redis
       - POSTGRES_HOST=postgres
     command: |

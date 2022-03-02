@@ -20,7 +20,7 @@ from django.urls import path, include
 from blog.views import register
 from posts.views import post_list, post_add, post_view, post_admin
 from profiles.views import profiles_index
-from shop.views import product_list, product_details_view
+from shop.views import product_details_view, ProductListView
 
 urlpatterns = [
     path("admin/django-rq/", include("django_rq.urls")),
@@ -29,7 +29,7 @@ urlpatterns = [
     path("post/admin/", post_admin, name="post_admin"),
     path("post/<str:slug>/", post_view, name="post_view"),
     path("posts/add/", post_add, name="post_add"),
-    path("", product_list, name="home"),
+    path("", ProductListView.as_view(), name="home"),
     path(
         "product/<int:product_id>/", product_details_view, name="product_details_view"
     ),
