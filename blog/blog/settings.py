@@ -27,8 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_USE_SESSIONS = True
-CSRF_TRUSTED_ORIGINS = ["https://z62-django.herokuapp.com/"]
+CSRF_COOKIE_DOMAIN = "https://z62-django.herokuapp.com/"
 
 
 # Application definition
