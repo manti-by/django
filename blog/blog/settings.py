@@ -88,9 +88,9 @@ WSGI_APPLICATION = "blog.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django",
-        "USER": "django",
-        "PASSWORD": "django",
+        "NAME": os.getenv("POSTGRES_NAME", "django"),
+        "USER": os.getenv("POSTGRES_USER", "django"),
+        "PASSWORD": os.getenv("POSTGRES_PASS", "django"),
         "HOST": os.getenv("POSTGRES_HOST", "localhost"),
         "PORT": 5432,
     }
