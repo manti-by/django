@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "test")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+
+CSRF_TRUSTED_ORIGINS = ["https://z62-django.herokuapp.com/"]
 
 
 # Application definition
@@ -149,7 +151,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STATIC_ROOT = "/home/manti/static"
+STATIC_ROOT = BASE_DIR.parent.parent / "static"
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = BASE_DIR / "media"
@@ -169,7 +171,7 @@ LOGGING = {
         },
         "file": {
             "class": "logging.FileHandler",
-            "filename": "/tmp/app.log",
+            "filename": "/home/test/projects/log/django.log",
         },
     },
     "root": {
